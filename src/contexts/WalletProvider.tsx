@@ -2,7 +2,7 @@ import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
 import { WagmiProvider } from "wagmi";
-import { base } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // 0. Setup queryClient
@@ -19,7 +19,7 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [base] as const;
+const chains = [sepolia] as const;
 const config = defaultWagmiConfig({
   chains, // required
   projectId, // required
@@ -41,7 +41,7 @@ createWeb3Modal({
       name: "Tobi Wallet",
       homepage: "https://telifi.xyz/",
       image_url: "https://telifi.xyz/_next/static/media/logo.b454c4f8.svg",
-      desktop_link: "https://t.me/mpc_wallet_connect_bot/tobi_wallet",
+      desktop_link: "http://localhost:3000/",
     },
   ],
 });
