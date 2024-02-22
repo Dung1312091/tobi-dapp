@@ -41,7 +41,9 @@ createWeb3Modal({
       name: "Tobi Wallet",
       homepage: "https://telifi.xyz/",
       image_url: "https://telifi.xyz/_next/static/media/logo.b454c4f8.svg",
-      desktop_link: "http://localhost:3000/",
+      // desktop_link: "http://localhost:3000/",
+      desktop_link:
+        "https://t.me/mpc_wallet_connect_bot/tobi_wallet?startapp=wc&",
     },
   ],
 });

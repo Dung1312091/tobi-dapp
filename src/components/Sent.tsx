@@ -1,26 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "./Input";
-import { useConnect, useSendTransaction } from "wagmi";
+import { useAccount, useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 export const Sent = () => {
   const [sentData, setSentData] = useState<{
     to: string;
     amount: string;
   }>({
-    to: "",
-    amount: "",
+    to: "0x5fD3b839960fff70560cB397E8d6Adb1bA13e378",
+    amount: "0.00001",
   });
-  const { sendTransaction } = useSendTransaction();
-  const { isSuccess } = useConnect();
+  const { sendTransaction, error, data, isPending } = useSendTransaction();
+  console.log("sendTransaction result:", data, error);
+  const account = useAccount();
 
-  const handleSentTransaction = () => {
-    console.log("aaa");
-    sendTransaction({
-      to: sentData.to as any,
-      value: parseEther(sentData.amount),
-    });
-  };
+  useEffect(() => {
+    if (data) {
+      toast.success(
+        <a href={`https://sepolia.etherscan.io/tx/${data}`} target="_blank">
+          Transaction successfully
+        </a>
+      );
+    }
+  }, [data]);
+  useEffect(() => {
+    if (error) {
+      toast.error("Transaction failed", {
+        autoClose: 5000,
+      });
+    }
+  }, [error]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,8 +67,17 @@ export const Sent = () => {
         name="amount"
         value={sentData.amount}
       />
-      <button onClick={handleSentTransaction} disabled={!isSuccess}>
-        Sent
+      <button
+        onClick={async () => {
+          if (isPending) return;
+          sendTransaction({
+            to: sentData.to as any,
+            value: parseEther(sentData.amount),
+          });
+        }}
+        disabled={!account?.isConnected}
+      >
+        {isPending ? "Sending..." : "Sent"}
       </button>
     </div>
   );
