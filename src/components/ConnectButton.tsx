@@ -1,3 +1,7 @@
 export function ConnectButton() {
-  return <w3m-button />;
+  return (
+    <div>
+      <w3m-button />
+    </div>
+  );
 }
