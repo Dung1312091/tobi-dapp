@@ -47,7 +47,7 @@ createWeb3Modal({
       //   ? "https://c03b-14-161-41-51.ngrok-free.app"
       //   : "",
       desktop_link: "https://tobi-wallet-connect-server.onrender.com",
-      mobile_link: '"https://tobi-wallet-connect-server.onrender.com"',
+      mobile_link: "https://tobi-wallet-connect-server.onrender.com",
     },
   ],
 });
