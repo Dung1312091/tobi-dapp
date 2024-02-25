@@ -4,6 +4,7 @@ import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 import { WagmiProvider } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { TobiSdk, topiHelper } from "../sdk/tobi";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -29,7 +30,7 @@ const config = defaultWagmiConfig({
   enableEIP6963: true, // Optional - true by default
   enableCoinbase: true, // Optional - true by default
 });
-
+// const tobiSdk = new TobiSdk(config);
 // 3. Create modal
 createWeb3Modal({
   wagmiConfig: config,
@@ -42,11 +43,16 @@ createWeb3Modal({
       homepage: "https://telifi.xyz/",
       image_url: "https://telifi.xyz/_next/static/media/logo.b454c4f8.svg",
       // desktop_link: "http://localhost:3000/",
-      desktop_link:
-        "https://t.me/mpc_wallet_connect_bot/tobi_wallet?startapp=wc&",
+      // desktop_link: topiHelper.isDappRunningOnBrowser()
+      //   ? "https://c03b-14-161-41-51.ngrok-free.app"
+      //   : "",
+      desktop_link: "https://aadd-14-161-41-51.ngrok-free.app",
     },
   ],
 });
+
+console.log("window.frameElement", window.frameElement);
+// tobiSdk.initialize();
 
 interface WalletProviderProps {}
 export const WalletProvider: React.FunctionComponent<
