@@ -12,16 +12,16 @@ export class TobiSdk {
   private onDisplayUri(uri: string) {
     if (topiHelper.isDappRunningOnTelegram()) {
       const paramString = encodeURIComponent(uri || "");
-      const params = paramString
-        .replaceAll("/", "%2F")
-        .replaceAll(",", "%2C")
-        .replaceAll(":", "%3A")
-        .replaceAll(".", "%2E")
-        .replaceAll("-", "%2D")
-        .replaceAll("_", "%5F")
-        .replaceAll("&", "-")
-        .replaceAll("=", "__")
-        .replaceAll("%", "--");
+      const params = paramString;
+      // .replaceAll("/", "%2F")
+      // .replaceAll(",", "%2C")
+      // .replaceAll(":", "%3A")
+      // .replaceAll(".", "%2E")
+      // .replaceAll("-", "%2D")
+      // .replaceAll("_", "%5F")
+      // .replaceAll("&", "-")
+      // .replaceAll("=", "__")
+      // .replaceAll("%", "--");
 
       const url =
         "https://t.me/mpc_wallet_connect_bot/tobi_wallet?startapp=" + params;
